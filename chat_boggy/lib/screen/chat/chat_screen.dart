@@ -16,8 +16,7 @@ class ChatScreen extends StatelessWidget
         centerTitle: false,
         leading: CircleAvatar
         (
-          //backgroundImage: NetworkImage('assets/images/boggy.png'),
-          backgroundImage: NetworkImage('C:/Users/Usuario/OneDrive/Pictures/Wallpaper'),
+          backgroundImage: NetworkImage('https://i.pinimg.com/736x/d0/c2/45/d0c245336bdde7dba0c3c4fe05c59936.jpg'),
         ),
       ),
       body: ChatView(),
