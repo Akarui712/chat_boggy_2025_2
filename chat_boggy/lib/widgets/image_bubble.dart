@@ -16,7 +16,7 @@ class ImageBubble extends StatelessWidget
       child: Image.network
       (
         imageUrl,
-        width: size.width *0.7,
+        width: size.width * 0.7,
         height: 150,
         fit: BoxFit.cover,
       ),
