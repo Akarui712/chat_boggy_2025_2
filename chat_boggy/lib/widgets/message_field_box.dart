@@ -15,7 +15,16 @@ class MessageFieldBox extends StatelessWidget
     (
       controller: textController,
       focusNode: focusNode,
-      decoration: _customInputDecoration(colors: colors),
+      decoration: _customInputDecoration
+      (
+        colors: colors,
+        onSend: ()
+        {
+          print('Mensaje ${textController.text}');
+          textController.clear();
+          focusNode.requestFocus();
+        },
+      ),
       onTapOutside: (event)
       {
         print('Quiero saber que haces $event');
@@ -30,11 +39,14 @@ class MessageFieldBox extends StatelessWidget
     );
   }
 
-  InputDecoration _customInputDecoration({required ColorScheme colors}) => InputDecoration
+  InputDecoration _customInputDecoration
+  ({required ColorScheme colors, required VoidCallback onSend,}) 
+  => InputDecoration
   (
     enabledBorder: _customOutlineInputBorder(colors.primary),
     focusedBorder: _customOutlineInputBorder(colors.primaryContainer),
     hintText: 'Escribe un mensaje',
+    suffixIcon: IconButton(onPressed: onSend, icon: const Icon(Icons.send)),
   );
 
   OutlineInputBorder _customOutlineInputBorder(Color color) => OutlineInputBorder
