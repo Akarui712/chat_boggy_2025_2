@@ -1,4 +1,4 @@
-import 'package:chat_boggy/widgets/image_bubble.dart';
+import 'package:chat_boggy/presentation/widgets/image_bubble.dart';
 import 'package:flutter/material.dart';
 
 class MessageBubble extends StatelessWidget

@@ -1,7 +1,10 @@
-import 'package:chat_boggy/views/her_message_bubble_view.dart';
-import 'package:chat_boggy/views/my_message_bubble_views.dart';
-import 'package:chat_boggy/widgets/message_field_box.dart';
+import 'package:chat_boggy/domain/entities/message.dart';
+import 'package:chat_boggy/presentation/views/her_message_bubble_view.dart';
+import 'package:chat_boggy/presentation/views/my_message_bubble_views.dart';
+import 'package:chat_boggy/presentation/widgets/message_field_box.dart';
+import 'package:chat_boggy/providers/chat_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ChatView extends StatelessWidget
 {
@@ -11,6 +14,7 @@ class ChatView extends StatelessWidget
   Widget build(BuildContext context)
   {
     final colorScheme = Theme.of(context).colorScheme;
+    final ChatProvider chatProvider = context.watch<ChatProvider>();
     return SafeArea
     (
       child: Column
@@ -24,18 +28,18 @@ class ChatView extends StatelessWidget
               padding: EdgeInsetsDirectional.symmetric(horizontal: 10),
               child: ListView.builder
               (
-                itemCount: 4,
+                itemCount: chatProvider.messagesList.length,
                 itemBuilder: (context, index)
                 {
-                  return index % 2 == 0 ? HerMessageBubbleView
+                  return chatProvider.messagesList[index].fromWho == FromWho.hers ? HerMessageBubbleView
                   (
                     colorScheme: colorScheme,
-                    urlImageBubble: 'https://yesno.wtf/assets/yes/14-b57c6dc03aa15a4b18f53eb50d6197ee.gif',
+                    urlImageBubble: chatProvider.messagesList[index].imageUrl!,
                   )
                   : MyMessageBubbleView
                   (
                     colorScheme: colorScheme,
-                    message: "Hola mundo 2"
+                    message: chatProvider.messagesList[index].text,
                   );
                 },
               ),
