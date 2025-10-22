@@ -1,4 +1,5 @@
 import 'package:chat_boggy/domain/entities/message.dart';
+import 'package:chat_boggy/infrastructure/datasource/get_yes_no_answer.dart';
 import 'package:flutter/material.dart';
 
 class ChatProvider extends ChangeNotifier //Notificaciones de los cambios
@@ -23,6 +24,10 @@ class ChatProvider extends ChangeNotifier //Notificaciones de los cambios
   {
     final newMessage = Message(text: message, fromWho: FromWho.me);
     messagesList.add(newMessage);
+    notifyListeners();
+
+    final response = await GetYesNoAnswer().getAnswer();
+    messagesList.add(response);
     notifyListeners();
   }
 }
