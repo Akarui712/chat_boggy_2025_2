@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class MessageFieldBox extends StatefulWidget
 {
-  final void Function(String) onValue;
-  const MessageFieldBox({super.key, required this.onValue});
+  final Function(String) onSend;
+  const MessageFieldBox({super.key, required this.onSend});
 
   @override
   State<MessageFieldBox> createState() => _MessageFieldBoxState();
@@ -29,7 +29,7 @@ class _MessageFieldBoxState extends State<MessageFieldBox> {
           final textValue = textController.value.text;
           if(textValue.isNotEmpty)
           {
-            widget.onValue(textValue);
+            widget.onSend(textValue);
             textController.clear();
             focusNode.requestFocus();
           }
@@ -55,7 +55,7 @@ class _MessageFieldBoxState extends State<MessageFieldBox> {
   (
     enabledBorder: _customOutlineInputBorder(colors.primary),
     focusedBorder: _customOutlineInputBorder(colors.primaryContainer),
-    hintText: 'Escribe un mensaje',
+    hintText: 'Envía tu pregunta: ',
     suffixIcon: IconButton(onPressed: onSend, icon: const Icon(Icons.send)),
   );
 

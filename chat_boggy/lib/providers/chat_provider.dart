@@ -11,8 +11,11 @@ class ChatProvider extends ChangeNotifier //Notificaciones de los cambios
   {
     final newMessage = Message(text: message, fromWho: FromWho.me);
     await setMessageList(newMessage);
-    final response = await GetYesNoAnswer().getAnswer();
-    await setMessageList(response);
+    if(message.endsWith('?'))
+    {
+      final response = await GetYesNoAnswer().getAnswer();
+      await setMessageList(response);
+    }
   }
 
   Future<void> setMessageList(Message message) async
